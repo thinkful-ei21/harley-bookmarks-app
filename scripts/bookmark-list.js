@@ -14,7 +14,6 @@ const bookmarkList = (function(){
       try{
         Item.validateFields(newItemTitle, newItemUrl);
         store.addItem(Item.create(newItemTitle, newItemUrl, newItemDesc, newItemRating));
-        store.errorMessage = '';
       } catch(e) {
         store.errorMessage = e.message;
       }
@@ -29,10 +28,22 @@ const bookmarkList = (function(){
     });
   };
 
+  const getIdfromElement = function(element) {
+    return $(element).closest('.js-item-element').data('item-id');
+  };
+
+  const handleDelete = function() {
+    $('.js-bookmark-list').on('click', '.js-item-delete', event =>{
+      const id = getIdfromElement(event.currentTarget);
+      store.findAndDelete(id);
+      render();
+    });
+  };
+
   const bindEventListeners = function() {
     handleNewItemSubmit();
     handleMinimumRating();
-    // handleDelete();
+    handleDelete();
     // handleDetailed();
   };
   
@@ -62,12 +73,20 @@ const bookmarkList = (function(){
     return items.join('');
   };
 
+  const reset = function() {
+    $('.js-bookmark-title').val('');
+    $('.js-bookmark-url').val('');
+    $('.js-bookmark-desc').val('');
+    store.errorMessage = '';
+  };
+
   const render = function() {
     let items = store.items.filter(item => item.rating >= store.minimumRating);
     console.log('render function ran');
     const bookmarkListItemsString = generateBookmarkItemsString(items);
     $('.js-bookmark-list').html(bookmarkListItemsString);
     $('#error-message').text(store.errorMessage);
+    reset();
   };
   
   return {
