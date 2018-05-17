@@ -22,9 +22,16 @@ const bookmarkList = (function(){
     });
   };
 
+  const handleMinimumRating = function() {
+    $('.js-bookmark-filter').change(function() {
+      store.minimumRating = parseInt($('select option:selected').val());
+      render();
+    });
+  };
+
   const bindEventListeners = function() {
     handleNewItemSubmit();
-    // handleMinimumRating();
+    handleMinimumRating();
     // handleDelete();
     // handleDetailed();
   };
