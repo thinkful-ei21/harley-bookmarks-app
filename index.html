@@ -25,7 +25,7 @@
                 <label for="twoStar">2 out of 5 stars</label>
             
                 <input type="radio" id="threeStar"
-                    name="rating" value="3">
+                    name="rating" value="3" checked>
                 <label for="threeStar">3 out of 5 stars</label>
 
                 <input type="radio" id="fourStar"
@@ -37,7 +37,7 @@
                 <label for="fiveStar">5 out of 5 stars</label>
             </div>
             <button type="submit">Add Bookmark</button>
-            <span class="error-message">e.message</span>
+            <p id="error-message">e.message</p>
         </form>
         <div>
             <select name="bookmark-filter" class="js-bookmark-filter">
@@ -50,22 +50,6 @@
             </select>
         </div>
         <ul class="bookmark-list js-bookmark-list">
-            <li class="js-item-element" data-item-id="${item.id}">
-                <button class="bookmark-item">${item.title}</button>
-                <p class="bookmark-item-rating">
-                    ${item.rating} out of 5 stars
-                </p>
-                <p class="hidden">
-                    <a href="${item.url}">Visit Site</a>
-                </p>
-                <p class="hidden">
-                    ${item.description}
-                </p>
-                <div class="bookmark-item-controls">
-                    <button class="bookmark-item-delete js-item-delete">
-                    <span class="button-label">delete</span>
-                    </button>
-                </div>
             </li>
         </ul>
     </div>

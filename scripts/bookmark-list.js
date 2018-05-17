@@ -60,6 +60,7 @@ const bookmarkList = (function(){
     console.log('render function ran');
     const bookmarkListItemsString = generateBookmarkItemsString(items);
     $('.js-bookmark-list').html(bookmarkListItemsString);
+    $('#error-message').text(store.errorMessage);
   };
   
   return {
