@@ -44,8 +44,10 @@ const bookmarkList = (function(){
   const handleDelete = function() {
     $('.js-bookmark-list').on('click', '.js-item-delete', event =>{
       const id = getIdfromElement(event.currentTarget);
-      store.findAndDelete(id);
-      render();
+      api.deleteItem(id, response => {
+        store.findAndDelete(id);
+        render();
+      });
     });
   };
 
