@@ -4,24 +4,17 @@
 // eslint-disable-next-line no-unused-vars
 const Item = (function(){
 
-  const validateFields = function(title, url) {
-    if (!title || !url) throw new TypeError('Title and url are required fields');
+  const validateUrl = function(url) {
+    return (url.length < 5 || url.slice(0,4) !== 'http');
   };
 
-  const create = function(title, url, desc='', rating=1) {
-    return {
-      id: cuid(),
-      title,
-      url,
-      desc,
-      rating,
-      detailed: false,
-    };
+  const validateFields = function(title, url) {
+    if (!title) throw new TypeError('Bookmark Title is a required field');
+    else if (validateUrl(url)) throw new TypeError('Url must be at least 5 characters and start with `http`');
   };
 
   return {
     validateFields,
-    create,
   };
 
 }());

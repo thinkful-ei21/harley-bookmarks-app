@@ -1,5 +1,5 @@
 'use strict';
-/* global store, Item*/
+/* global store, Item, api*/
 
 // eslint-disable-next-line no-unused-vars
 const bookmarkList = (function(){
@@ -13,11 +13,20 @@ const bookmarkList = (function(){
       const newItemRating = $('input[name=rating]:checked').val();
       try{
         Item.validateFields(newItemTitle, newItemUrl);
-        store.addItem(Item.create(newItemTitle, newItemUrl, newItemDesc, newItemRating));
+        api.createItem({
+          title: newItemTitle,
+          url: newItemUrl,
+          desc: newItemDesc,
+          rating: newItemRating,
+        }, newBookmark => {
+          store.addItem(newBookmark);
+          render();
+        });
+        
       } catch(e) {
         store.errorMessage = e.message;
+        render();
       }
-      render();
     });
   };
 
