@@ -4,6 +4,7 @@
 const store = (function(){
 
   const addItem = function(item) {
+    item.detailed = false;
     this.items.push(item);
   };
 

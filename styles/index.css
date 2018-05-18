@@ -13,7 +13,7 @@
   button:hover {
     cursor: pointer;
   }
-  
+
   .hidden {
     display: none;
   }
@@ -46,3 +46,38 @@
   #error-message {
     color: red;
   }
+
+  .js-bookmark-title {
+    margin-right: 4px;
+  }
+
+  .js-bookmark-desc {
+    height:200px;
+    width:400px;
+    margin-top: 5px;
+}
+
+.vertical-radio-buttons {
+    width:185px;
+}
+
+.vertical-radio-buttons div{
+    display:block;
+    clear:both;
+}
+
+#twoStar,#fourStar{
+    margin-top:15px;
+    margin-bottom: 15px;
+}
+
+
+@media (min-width: 600px) {
+    .description {
+        width:405px;
+        display: inline-block;
+    }
+    .vertical-radio-buttons {
+        display:inline-block;
+    }
+}
