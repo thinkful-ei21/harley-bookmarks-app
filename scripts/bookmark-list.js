@@ -40,17 +40,25 @@ const bookmarkList = (function(){
     });
   };
 
+  const handleDetailed = function() {
+    $('.js-bookmark-list').on('click', '.js-item-title', event =>{
+      const id = getIdfromElement(event.currentTarget);
+      store.toggleDetailed(id);
+      render();
+    });
+  };
+
   const bindEventListeners = function() {
     handleNewItemSubmit();
     handleMinimumRating();
     handleDelete();
-    // handleDetailed();
+    handleDetailed();
   };
   
   const generateItemElement = function(item) {
     let detailed = item.detailed ? 'shown' : 'hidden';
     return `<li class="js-item-element" data-item-id="${item.id}">
-    <button class="bookmark-item">${item.title}</button>
+    <button class="bookmark-item-title js-item-title">${item.title}</button>
     <p class="bookmark-item-rating">
         ${item.rating} out of 5 stars
     </p>

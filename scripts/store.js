@@ -8,7 +8,7 @@ const store = (function(){
   };
 
   const findById = function(id) {
-    return this.items.find(item => item.id === id);
+    return store.items.find(item => item.id === id);
   };
 
   const findAndDelete = function(id) {
